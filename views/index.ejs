@@ -1,0 +1,39 @@
+<%- include("../views/partials/header.ejs") %>
+<body>
+    <div class="container">
+        <div class="row">
+            <div>
+                <h1>Hello World</h1>
+            </div>
+            <div>
+                <form action="/submit" method="post">
+                    <label>Title</label>
+                    <input type="text" name="title">
+                    <label>Body</label>
+                    <input type="text" name="body">
+                    <input type="submit" value="Create">
+                </form>
+            </div>
+            <div>
+                <% if(locals.listOfPosts) { %>
+                    
+                    <% listOfPosts.forEach((post) => { %>
+                        
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title"><%=post.title%></h5>
+                              <p class="card-text"><%= post.body %></p>
+                              <a href="/update/<%= post.postID %>" class="btn btn-primary">View</a>
+                              <a href="/delete/<%= post.postID %>" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>   
+                    
+                    <% }); %>
+                
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+<%- include("../views/partials/footer.ejs") %>
+</html>
